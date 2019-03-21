@@ -1,6 +1,6 @@
 # Docker-SpiderLab
 
-[![Docker Automated build](https://img.shields.io/docker/automated/kajdreef/docker-spiderlab.svg)](https://hub.docker.com/r/kajdreef/docker-spiderlab/)
+[![Docker Automated build](https://img.shields.io/docker/automated/kajdreef/docker-spiderlab.svg)](https://hub.docker.com/r/kajdreef/spiderlab/)
 [![Docker Build Status](https://img.shields.io/docker/build/kajdreef/spiderlab.svg)](https://hub.docker.com/r/kajdreef/spiderlab/)
 [![Build Status](https://travis-ci.org/kajdreef/spiderlab.svg?branch=master)](https://travis-ci.org/kajdreef/docker-spiderlab)
 
