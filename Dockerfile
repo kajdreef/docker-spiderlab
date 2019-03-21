@@ -10,7 +10,7 @@ WORKDIR /usr/spiderlab/tools/primitive-hamcrest/
 RUN git clone https://github.com/inf295uci-2015/primitive-hamcrest.git .
 RUN mvn package install
 
-WORKDIR /usr/spiderlab/tools/java-callgraph
+WORKDIR /usr/spiderlab/tools/java-callgraph/
 RUN git clone https://github.com/gousiosg/java-callgraph.git .
 RUN mvn package
 
@@ -18,11 +18,10 @@ WORKDIR /usr/spiderlab/tools/tacoco/
 RUN git clone https://github.com/spideruci/tacoco.git .
 RUN mvn package install
 
-FROM tools
-WORKDIR /usr/spiderlab/tools/blinky
+WORKDIR /usr/spiderlab/tools/blinky/
 RUN git clone https://github.com/spideruci/blinky.git  .
 RUN python3 ../../scripts/change_blinky_config.py xile,frames
-RUN mvn clean package install
+RUN mvn package install
 
 FROM tools
 WORKDIR /usr/spiderlab/
