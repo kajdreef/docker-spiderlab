@@ -1,8 +1,8 @@
 # Docker-SpiderLab
 
 [![Docker Automated build](https://img.shields.io/docker/automated/kajdreef/docker-spiderlab.svg)](https://hub.docker.com/r/kajdreef/docker-spiderlab/)
-[![Docker Build Status](https://img.shields.io/docker/build/kajdreef/docker-spiderlab.svg)](https://hub.docker.com/r/kajdreef/docker-spiderlab/)
-[![Build Status](https://travis-ci.org/kajdreef/docker-spiderlab.svg?branch=master)](https://travis-ci.org/kajdreef/docker-spiderlab)
+[![Docker Build Status](https://img.shields.io/docker/build/kajdreef/spiderlab.svg)](https://hub.docker.com/r/kajdreef/spiderlab/)
+[![Build Status](https://travis-ci.org/kajdreef/spiderlab.svg?branch=master)](https://travis-ci.org/kajdreef/docker-spiderlab)
 
 The following tools created by the [SpiderLab](http://spideruci.org) are available in this docker container:
 + [Blinky](https://github.com/spideruci/blinky)
