@@ -1,3 +1,6 @@
+"""
+Script for running tacoco on a project
+"""
 #!/bin/python3
 import argparse
 import subprocess
@@ -5,35 +8,43 @@ import os
 
 
 def parse_arguments():
+    """
+    Parse arguments to run Tacoco
+    """
     parser = argparse.ArgumentParser(description='Run Tacoco')
 
     parser.add_argument('sut', type=str,
                         help="Absolute path to system-under-test's root.")
-    
+
+    parser.add_argument('--out', type=str, help="absolute path to output directory")
+
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     os.chdir("/usr/spiderlab/tools/tacoco/")
-    args = parse_arguments()
+    ARGS = parse_arguments()
 
-    sut = args.sut
+    SUT = ARGS.sut
 
-    if not os.path.isdir(sut):
+    if not os.path.isdir(SUT):
         print("SUT path is not a directory...")
         exit(-1)
-    
-    outdir = "/usr/spiderlab/output/{}/".format((sut.split("/"))[-2])
-    
-    cmd = [
+
+    OUT = "/usr/spiderlab/output/{}/".format((SUT.split("/"))[-2])
+
+    if ARGS.out is not None:
+        OUT = ARGS.out
+
+    CMD = [
         "mvn",
         "-q",
         "exec:java",
         "-Plauncher",
-        "-Dtacoco.sut={}".format(sut),
-        "-Dtacoco.outdir={}".format(outdir),
+        "-Dtacoco.sut={}".format(SUT),
+        "-Dtacoco.outdir={}".format(OUT),
         "-Danalyzer.opts=/usr/spiderlab/tools/blinky/blinky-tacoco/src/main/resources/blinky-analyzer.config",
         "-Dtacoco.log"
     ]
 
-    subprocess.call(cmd)
+    subprocess.call(CMD)

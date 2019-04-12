@@ -1,7 +1,7 @@
 # Base image
 FROM openjdk:8-jdk-alpine as base
 WORKDIR /usr/spiderlab/
-RUN apk add --no-cache git=2.20.1-r0 maven=3.6.0-r0 gradle=4.10.3-r0 python3=3.6.8-r1
+RUN apk add --no-cache git=2.20.1-r0 maven=3.6.0-r0 gradle=4.10.3-r0 python3=3.6.8-r2
 COPY ./scripts ./scripts
 
 # # Build the tools
@@ -25,3 +25,4 @@ RUN mvn package install
 
 FROM tools
 WORKDIR /usr/spiderlab/
+ENV PATH="${PATH}:/usr/spiderlab/scripts/"
