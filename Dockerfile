@@ -1,28 +1,23 @@
 # Base image
-FROM openjdk:8-jdk-alpine as base
+FROM openjdk:13-jdk-alpine as base
 WORKDIR /usr/spiderlab/
-RUN apk add --no-cache git=2.20.1-r0 maven=3.6.0-r0 gradle=4.10.3-r0 python3=3.6.8-r2
-COPY ./scripts ./scripts
+RUN apk add --no-cache git=2.22.4-r0 maven=3.6.1-r0 gradle=5.4.1-r0 python3=3.7.7-r0 bash=5.0.0-r0
 
 # # Build the tools
 FROM base as tools
 WORKDIR /usr/spiderlab/tools/primitive-hamcrest/
-RUN git clone https://github.com/inf295uci-2015/primitive-hamcrest.git .
-RUN mvn package install
-
-WORKDIR /usr/spiderlab/tools/java-callgraph/
-RUN git clone https://github.com/gousiosg/java-callgraph.git .
-RUN mvn package
+RUN git clone https://github.com/spideruci/primitive-hamcrest.git .
+RUN mvn package install -DskipTests
 
 WORKDIR /usr/spiderlab/tools/tacoco/
 RUN git clone https://github.com/spideruci/tacoco.git .
-RUN mvn package install
+RUN mvn package install -DskipITs -DskipTests
 
-WORKDIR /usr/spiderlab/tools/blinky/
-RUN git clone https://github.com/spideruci/blinky.git  .
-RUN python3 ../../scripts/change_blinky_config.py xile,frames
-RUN mvn package install
+WORKDIR /usr/spiderlab/tools/spidertools/
+RUN git clone https://github.com/kajdreef/spidertools.git  .
+RUN pip3 install -e .
 
 FROM tools
 WORKDIR /usr/spiderlab/
-ENV PATH="${PATH}:/usr/spiderlab/scripts/"
+COPY .spidertools.yml .spidertools.yml 
+CMD bash
